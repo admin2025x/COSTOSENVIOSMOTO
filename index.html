@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>International Items - Envíos Moto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #00aaff, #0066ff);
+        margin: 0;
+        padding: 20px;
+        color: #fff;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: auto;
+        background: #ffffff22;
+        padding: 20px;
+        border-radius: 18px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 0 20px #00000033;
+    }
+
+    h1, h2 {
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    h1 span {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .search-box {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .search-box input {
+        width: 95%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+        box-shadow: 0 0 10px #00000033;
+    }
+
+    .card {
+        background: #ffffffdd;
+        color: #000;
+        margin: 12px 0;
+        padding: 15px;
+        border-radius: 14px;
+        box-shadow: 0 0 10px #00000033;
+        transition: transform .15s;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .price {
+        color: #008000;
+        font-size: 18px;
+        margin-top: 5px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📦 <span>International Items - Envíos Moto</span></h1>
+    <h2>👨‍💻 Creador: Brayan Raudales</h2>
+
+    <div class="search-box">
+        <input type="text" id="buscador" placeholder="🔍 Buscar colonia, barrio, residencial...">
+    </div>
+
+    <div id="lista"></div>
+</div>
+
+<script>
+const datos = [
+    {direccion:"15 DE SEPTIEMBRE", costo:"80"},
+    {direccion:"ALTOS DE LOARQUE (MIRADOR)", costo:"90"},
+    {direccion:"ALTOS DE TONCONTIN", costo:"80"},
+    {direccion:"AMERICA", costo:"80"},
+    {direccion:"CIUDAD NUEVA", costo:"80"},
+    {direccion:"COLONIA LOARQUE", costo:"90"},
+    {direccion:"COLONIA SATELITE", costo:"90"},
+    {direccion:"EL SAUCE", costo:"90"},
+    {direccion:"LA ARBOLEDA", costo:"100"},
+    {direccion:"LA CATOLICA", costo:"90"},
+    {direccion:"LA CONCEPCION (hasta la primera etapa)", costo:"100"},
+    {direccion:"LA GODOY", costo:"80"},
+    {direccion:"LA MIRAFLores", costo:"80"},
+    {direccion:"LAS CASITAS (si se pasa hasta la residencial las casitas 120)", costo:"100"},
+    {direccion:"LAS COLINAS", costo:"80"},
+    {direccion:"LAS HADAS", costo:"80"},
+    {direccion:"LAS LOMAS", costo:"80"},
+    {direccion:"LAS MINITAS", costo:"80"},
+    {direccion:"LAS UVAS", costo:"90"},
+    {direccion:"LOMA LINDA", costo:"80"},
+    {direccion:"LOMA VERDE", costo:"80"},
+    {direccion:"LOMAS DE TILOARQUE", costo:"80"},
+    {direccion:"LOMAS DEL TONCONTIN", costo:"80"},
+    {direccion:"MIRADOR DE LOS ANGELES", costo:"100"},
+    {direccion:"MIRAMONTES", costo:"80"},
+    {direccion:"MONTELIMAR", costo:"Revisar zona"},
+    {direccion:"PALMA REAL", costo:"90"},
+    {direccion:"PERIODISTA", costo:"80"},
+    {direccion:"PRADOS UNIVERSITARIOS", costo:"90"},
+    {direccion:"RESIDENCIA PLAZA", costo:"80"},
+    {direccion:"RESIDENCIAL CENTROAMERICA", costo:"80"},
+    {direccion:"RESIDENCIAL EUCALIPTO", costo:"90"},
+    {direccion:"RESIDENCIAL LAS CASITAS", costo:"120"},
+    {direccion:"RESIDENCIAL LOS HIDALGOS", costo:"100"},
+    {direccion:"RESIDENCIAL LOS ROBLES", costo:"90"},
+    {direccion:"RESIDENCIAL VENECIA", costo:"80"},
+    {direccion:"ROBLE OESTE", costo:"90"},
+    {direccion:"SAN IGNACIO", costo:"80"},
+    {direccion:"SAN SEBASTIAN", costo:"130"},
+    {direccion:"VICTOR F. ARDON", costo:"80"},
+    {direccion:"ALTOS DE LA GRANJA", costo:"80"},
+    {direccion:"ALTOS DE LA JOYA", costo:"80"},
+    {direccion:"BELLA ORIENTE", costo:"90"},
+    {direccion:"BLV JUAN PABLO SEGUNDO", costo:"80"},
+    {direccion:"BO EL CENTRO", costo:"80"},
+    {direccion:"BO LA BOLSA", costo:"80"},
+    {direccion:"BO MORAZAN", costo:"80"},
+    {direccion:"BOULERVAR KUWAIT", costo:"80"},
+    {direccion:"COL 3 CAMINOS", costo:"80"},
+    {direccion:"COL 15 DE SEPTIEMBRE", costo:"80"},
+    {direccion:"COL BERNARDO DACI", costo:"80"},
+    {direccion:"COL KENNEDY", costo:"80"},
+    {direccion:"COL LUIS LANDA", costo:"80"},
+    {direccion:"COL MAYANGLE", costo:"80"},
+    {direccion:"COL SAN ANGEL", costo:"80"},
+    {direccion:"COL TEPEYAC", costo:"80"},
+    {direccion:"COL SATELITE", costo:"90"},
+    {direccion:"COLONIA LA VEGA", costo:"80"},
+    {direccion:"ECOVIVIENDA", costo:"90"},
+    {direccion:"EL ALAMO", costo:"80"},
+    {direccion:"EL HOGAR", costo:"80"},
+    {direccion:"EL PRADO", costo:"80"},
+    {direccion:"LA ALAMEDA", costo:"80"},
+    {direccion:"LA FLORENCIA", costo:"80"},
+    {direccion:"LA GRANJA", costo:"80"},
+    {direccion:"LA HUMUYA", costo:"80"},
+    {direccion:"LA MARADIAGA", costo:"80"},
+    {direccion:"VENECIA", costo:"90"},
+    {direccion:"Residencial San Juan (5 ave. Bloque 3 casa 18)", costo:"80"},
+    {direccion:"Residencial suyapita, bloque E", costo:"100"},
+    {direccion:"Hospital San Felipe", costo:"80"},
+    {direccion:"Altos del trapiche bloque 6", costo:"100"},
+    {direccion:"Texaco de cerro grande", costo:"100"},
+    {direccion:"UTH Universidad Tecnologica Honduras", costo:"100"},
+    {direccion:"Residencial las cascadas", costo:"80"},
+    {direccion:"En colonia jardines del norte", costo:"100"},
+    {direccion:"Colonia Carrizal 2 (Calle principal)", costo:"100"},
+    {direccion:"Tecnicentro carplus arriba de la UNAH", costo:"100"},
+    {direccion:"Terminal de buses jacaleapa", costo:"80"},
+    {direccion:"UNAH Universidad Autonoma Honduras", costo:"80"},
+    {direccion:"La travesia (Se llega hasta el palo)", costo:"100"},
+    {direccion:"Barrio La Cabaña Calle Principal", costo:"90"},
+    {direccion:"Motomundo al lado de novacentro", costo:"80"},
+    {direccion:"Novacentro", costo:"80"},
+    {direccion:"Restaurante mirawa del boulevar morazan", costo:"80"},
+    {direccion:"Lomas del guijarro. edificio en construcción que se llama Torre Doss", costo:"80"},
+    {direccion:"Campo de futbol de la 21 de febrero", costo:"90"},
+    {direccion:"Plaza las hadas", costo:"80"},
+    {direccion:"Maxi despensa de la quezada", costo:"100"},
+    {direccion:"Residencial Santa Cruz", costo:"100"},
+    {direccion:"Residencial hacienda real por el mayan school", costo:"100"},
+    {direccion:"Colonia Israel sur", costo:"100"},
+    {direccion:"Estacion policial core 7", costo:"80"},
+    {direccion:"Mall premier", costo:"80"},
+    {direccion:"MetroMall", costo:"80"},
+    {direccion:"CityMall", costo:"80"},
+    {direccion:"Cascadas Mall", costo:"80"},
+    {direccion:"Colonia nueva suyapa ariba de agafan en la posta", costo:"100"},
+    {direccion:"Residencial las Hadas", costo:"80"},
+    {direccion:"El bosque arriba del parque la leona", costo:"100"},
+    {direccion:"Primer batallon de infanteria adelante del hospital militar", costo:"100"},
+    {direccion:"Supermercado la colonia villas del sol", costo:"90"},
+    {direccion:"Embajada de Estados Unidos", costo:"80"},
+    {direccion:"Secretaría de Seguridad En el club de la Policía Nacional", costo:"100"},
+    {direccion:"Residencial la cañada", costo:"80"},
+    {direccion:"Embotelladora la reina Pepsi", costo:"90"},
+    {direccion:"Colonia bendeck por el country", costo:"80"},
+    {direccion:"Colonia Israel Norte (Calle principal)", costo:"100"},
+    {direccion:"Dpi de la cañada a orilla del anillo", costo:"90"},
+    {direccion:"Colonia brisas del norte", costo:"100"},
+    {direccion:"Altos del trapiche 5ta etapa", costo:"90"},
+    {direccion:"Residencial Las Cumbres", costo:"90"},
+    {direccion:"Mercado jacaleapa", costo:"80"},
+    {direccion:"Terminal de buses Villanueva", costo:"100"},
+    {direccion:"Colonia la sosa calle príncipal", costo:"100"},
+    {direccion:"Parque la amistad", costo:"80"},
+    {direccion:"Basilica de suyapa", costo:"100"},
+    {direccion:"Colonia Rio grande por iglesia catolica de loarque (calle principal)", costo:"90"},
+    {direccion:"Mercado zonal belen", costo:"100"},
+    {direccion:"Colonia el country frente a la umaps", costo:"80"},
+    {direccion:"Bodega principal de codis 21 de octubre", costo:"100"},
+    {direccion:"Colonia Kennedy 3", costo:"80"},
+    {direccion:"Residencial María auxiliadora salida al sur", costo:"150"},
+    {direccion:"Hato de enmedio , sector 7 por la canchitas de fútbol", costo:"80"},
+    {direccion:"Colonia centroamerica oeste", costo:"80"},
+    {direccion:"Colonia centroamerica este", costo:"80"},
+    {direccion:"Colonia calpules enfrente de colegio Mary de flores", costo:"80"},
+    {direccion:"Aldea el tablón adelante de la residencial honduras  trepando la cuesta de la Unitec", costo:"110"},
+    {direccion:"Colonia la felicidad atrás de universidad catolica", costo:"90"},
+    {direccion:"Instituto Zaul Zelaya Gimenez", costo:"80"},
+    {direccion:"Barrio san pablo mercadito san pablo", costo:"100"},
+    {direccion:"La peña por bajo calle principal", costo:"80"},
+    {direccion:"Antes de llegar ala posta de villa vieja en la gasolinera texaco", costo:"110"},
+    {direccion:"Bodegas del ip adelante del sanaa en los laureles", costo:"90"},
+    {direccion:"Colonia Victor F Ardon", costo:"80"},
+    {direccion:"San Jose de la vega", costo:"80"},
+    {direccion:"Residencial el Cortijo, por el pedregal", costo:"80"},
+    {direccion:"En la cañada a la par de la texaco", costo:"80"}
+];
+
+// Orden alfabético
+datos.sort((a,b) => a.direccion.localeCompare(b.direccion));
+
+function mostrarLista(filtro="") {
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    datos
+        .filter(item => item.direccion.toLowerCase().includes(filtro.toLowerCase()))
+        .forEach(item => {
+            lista.innerHTML += `
+                <div class="card">
+                    <div class="title">📍 ${item.direccion}</div>
+                    <div class="price">💰 Envío: ${item.costo} Lps</div>
+                </div>
+            `;
+        });
+}
+
+mostrarLista();
+
+// Buscador
+document.getElementById("buscador").addEventListener("input", e => {
+    mostrarLista(e.target.value);
+});
+</script>
+
+</body>
+</html>
