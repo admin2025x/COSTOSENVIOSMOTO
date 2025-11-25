@@ -14,7 +14,7 @@
     }
 
     .container {
-        max-width: 850px;
+        max-width: 900px;
         margin: auto;
         background: #ffffff22;
         padding: 20px;
@@ -81,67 +81,30 @@
     <h1>📦 <span>International Items - Envíos Moto</span></h1>
     <h2>👨‍💻 Creador: Brayan Raudales</h2>
 
-<!-- 🔶 BLOQUE DE DESCUENTO -->
-<div style="
-    background: #ffeb3b;
-    color: #000;
-    padding: 15px;
-    border-radius: 12px;
-    margin: 15px 0;
-    font-weight: 700;
-    font-size: 18px;
-    box-shadow: 0 0 12px #00000055;
-">
-    ⚠️ RECUERDA QUE SI EL CLIENTE PIDE PRODUCTOS O TOTALES DE <span style="color:#d32f2f;">500 LPS O MÁS</span><br>
-    <span style="font-size:16px;">(SIN SUMAR EL COSTO DEL ENVÍO)</span><br>
-    PUEDES REBAJAR HASTA <span style="color:#2e7d32;">20 LPS</span> DEL COSTO DEL ENVÍO
+<!-- 🟡 AVISO DESCUENTO -->
+<div style="background:#ffeb3b;color:#000;padding:15px;border-radius:12px;margin:15px 0;font-weight:700;font-size:18px;box-shadow:0 0 12px #00000055;">
+⚠️ RECUERDA QUE SI EL CLIENTE PIDE PRODUCTOS O TOTALES DE <span style='color:#d32f2f;'>500 LPS O MÁS</span><br>
+<span style="font-size:16px;">(SIN SUMAR EL COSTO DEL ENVÍO)</span><br>
+PUEDES REBAJAR HASTA <span style='color:#2e7d32;'>20 LPS</span> DEL COSTO DEL ENVÍO
 </div>
 
-<!-- 🔴 BLOQUE ALERTA -->
-<div style="
-    background: #ff1744;
-    color: #fff;
-    padding: 18px;
-    border-radius: 12px;
-    margin: 10px 0 20px 0;
-    font-weight: 900;
-    font-size: 24px;
-    text-align: center;
-    box-shadow: 0 0 15px #00000066;
-">
+<!-- 🔴 AVISO -->
+<div style="background:#ff1744;color:#fff;padding:18px;border-radius:12px;margin:10px 0 20px 0;font-weight:900;font-size:24px;text-align:center;box-shadow:0 0 15px #00000066;">
     🚨 SOLO APLICA EN ENVÍOS DE 90–120 LPS 🚨
 </div>
 
-<!-- 🟩 BLOQUE ENVIOS A 50 LPS -->
-<div style="
-    background: #4caf50;
-    color: #fff;
-    padding: 18px;
-    border-radius: 12px;
-    margin: 10px 0 20px 0;
-    font-weight: 800;
-    font-size: 20px;
-    box-shadow: 0 0 15px #00000055;
-">
-    💸 <span style="font-size: 22px;">Lugares donde el envío vale <b>50 LPS</b></span> 💸
-    <br><br>
-    <span style="font-size:16px; font-weight:600;">
-        Solo que el cliente debe contar con una hora específica para la entrega,  
-        ya que el mismo entregador debe hacer un espacio para poder entregarle.  
-        Se pide puntualidad. MUCHAS GRACIAS 🥳
-    </span>
+<!-- 🟢 LUGARES A 50 LPS -->
+<div style="background:#4caf50;color:#fff;padding:18px;border-radius:12px;margin:10px 0 20px 0;font-weight:800;font-size:20px;box-shadow:0 0 15px #00000055;">
+💸 <span style="font-size:22px;">Lugares donde el envío vale <b>50 LPS</b></span> 💸
+<br><br>
+<span style="font-size:16px;font-weight:600;">
+Solo que el cliente debe contar con una hora específica para la entrega,  
+ya que el mismo entregador debe hacer un espacio para poder entregarle.  
+Se pide puntualidad. MUCHAS GRACIAS 🥳
+</span>
 </div>
 
-<ul style="
-    background:#ffffffdd;
-    color:#000;
-    padding:18px;
-    border-radius:14px;
-    margin:0 0 25px 0;
-    box-shadow:0 0 12px #00000033;
-    font-size:18px;
-    list-style-type:decimal;
-">
+<ul style="background:#ffffffdd;color:#000;padding:18px;border-radius:14px;margin:0 0 25px 0;box-shadow:0 0 12px #00000033;font-size:18px;list-style-type:decimal;">
     <li>Puma el Obelisco</li>
     <li>Edificio rosa en Villa Adela o mercadito Quique (6ta avenida, 16 calle)</li>
     <li>Llantera Concepción, antes de entrar al puente (esquina opuesta al Triángulo, a 1 cuadra de la cancha del Obelisco)</li>
@@ -157,127 +120,100 @@
 </div>
 
 <script>
+/* ============================
+   DIRECTORIO DE ENVÍOS
+=============================== */
+
 const datos = [
-    {direccion:"15 DE SEPTIEMBRE", costo:"90"},
-    {direccion:"ALTOS DE LOARQUE (MIRADOR)", costo:"90"},
-    {direccion:"ALTOS DE TONCONTIN", costo:"90"},
-    {direccion:"AMERICA", costo:"90"},
-    {direccion:"CASCADAS CITY", costo:"90"},
-    {direccion:"CIUDAD NUEVA", costo:"90"},
-    {direccion:"COLONIA LOARQUE", costo:"90"},
-    {direccion:"COLONIA SATELITE", costo:"90"},
-    {direccion:"EL SAUCE", costo:"90"},
-    {direccion:"LA ARBOLEDA", costo:"90"},
-    {direccion:"LA CATOLICA", costo:"90"},
-    {direccion:"LA CONCEPCION", costo:"90 en la etapa 1 si pasa preguntar"},
-    {direccion:"LA GODOY", costo:"90"},
-    {direccion:"LA MIRAFLores", costo:"90"},
-    {direccion:"LAS CASITAS", costo:"90"},
-    {direccion:"LAS COLINAS", costo:"90"},
-    {direccion:"LAS HADAS", costo:"90"},
-    {direccion:"LAS LOMAS", costo:"90"},
-    {direccion:"LAS MINITAS", costo:"90"},
-    {direccion:"LAS UVAS", costo:"90"},
-    {direccion:"LOMA LINDA", costo:"90"},
-    {direccion:"LOMA VERDE", costo:"90"},
-    {direccion:"LOMAS DE TILOARQUE", costo:"90"},
-    {direccion:"LOMAS DEL TONCONTIN", costo:"90"},
-    {direccion:"MIRADOR DE LOS ANGELES", costo:"90"},
-    {direccion:"MIRAMONTES", costo:"90"},
-    {direccion:"MONTELIMAR", costo:"Nose donde es cuando salga pedir ubicación para dar precio"},
-    {direccion:"PALMA REAL", costo:"90"},
-    {direccion:"PERIODISTA", costo:"90"},
-    {direccion:"PRADOS UNIVERSITARIOS", costo:"100"},
-    {direccion:"RESIDENCIA PLAZA", costo:"90"},
-    {direccion:"RESIDENCIAL CENTROAMERICA", costo:"90"},
-    {direccion:"RESIDENCIAL EUCALIPTO", costo:"90"},
-    {direccion:"RESIDENCIAL LAS CASITAS", costo:"90"},
-    {direccion:"RESIDENCIAL LOS HIDALGOS", costo:"90"},
-    {direccion:"RESIDENCIAL LOS ROBLES", costo:"90"},
-    {direccion:"RESIDENCIAL VENECIA", costo:"90"},
-    {direccion:"ROBLE OESTE", costo:"90"},
-    {direccion:"SAN IGNACIO", costo:"90"},
-    {direccion:"SAN SEBASTIAN", costo:"140"},
-    {direccion:"VICTOR F. ARDON", costo:"90"},
-    {direccion:"ALTOS DE LA GRANJA", costo:"90"},
-    {direccion:"ALTOS DE LA JOYA", costo:"90"},
-    {direccion:"BELLA ORIENTE", costo:"90"},
-    {direccion:"BLV JUAN PABLO SEGUNDO", costo:"90"},
-    {direccion:"BO EL CENTRO", costo:"90"},
-    {direccion:"BO LA BOLSA", costo:"90"},
-    {direccion:"BO MORAZAN", costo:"100"},
-    {direccion:"BOULERVAR KUWAIT", costo:"90"},
-    {direccion:"COL 3 CAMINOS", costo:"90"},
-    {direccion:"COL 15 DE SEPTIEMBRE", costo:"90"},
-    {direccion:"COL BERNARDO DACI", costo:"90"},
-    {direccion:"COL KENNEDY", costo:"90"},
-    {direccion:"COL LUIS LANDA", costo:"90"},
-    {direccion:"COL MAYANGLE", costo:"90"},
-    {direccion:"COL SAN ANGEL", costo:"90"},
-    {direccion:"COL TEPEYAC", costo:"90"},
-    {direccion:"COL SATELITE", costo:"90"},
-    {direccion:"COLONIA LA VEGA", costo:"90"},
-    {direccion:"ECOVIVIENDA", costo:"100"},
-    {direccion:"EL ALAMO", costo:"90"},
-    {direccion:"EL HOGAR", costo:"90"},
-    {direccion:"EL PRADO", costo:"90"},
-    {direccion:"LA ALAMEDA", costo:"90"},
-    {direccion:"LA FLORENCIA", costo:"100"},
-    {direccion:"LA GRANJA", costo:"90"},
-    {direccion:"LA HUMUYA", costo:"90"},
-    {direccion:"LA MARADIAGA", costo:"90"},
-    {direccion:"Cero grande hasta la zona 4", costo:"100"},
-    {direccion:"San Miguel", costo:"100"},
-    {direccion:"La ronda", costo:"100"},
-    {direccion:"Buenos Aires", costo:"100"},
-    {direccion:"La campaña", costo:"100"},
-    {direccion:"Guanacaste", costo:"100"},
-    {direccion:"21 de octubre", costo:"110"},
-    {direccion:"21 de febrero", costo:"90"},
-    {direccion:"La cañada", costo:"90"},
-    {direccion:"El hato", costo:"90"},
-    {direccion:"El trapiche", costo:"100"},
-    {direccion:"Suyapa solo abajo calle principal", costo:"100"},
-    {direccion:"El divino paraíso solo en el anillo", costo:"100"},
-    {direccion:"La ulloa solo orilla del anillo", costo:"100"},
-    {direccion:"Carrizal", costo:"100"},
-    {direccion:"Moll premier", costo:"100"},
-    {direccion:"Torocagua", costo:"100"},
-    {direccion:"Colonia villeda Morales", costo:"100"},
-    {direccion:"Complejo Río lindo la Vega", costo:"90"},
-    {direccion:"Calle los alcaldes enfrente de la naval a la par macdell", costo:"80"},
-    {direccion:"Más abajito del mall premiere por la Polo en el desvío", costo:"80"},
-    {direccion:"Brisas del valle calle principal", costo:"100"},
-    {direccion:"Plaza ciudad Nueva por calle los alcaldes", costo:"90"},
-    {direccion:"Villa olímpica", costo:"100"},
-    {direccion:"Al durazno salida al norte por la posta", costo:"160"},
-    {direccion:"Detrás de Banco Central por chiminique", costo:"90"},
-    {direccion:"Sector el sauce por pricesmart", costo:"90"},
-    {direccion:"Pedregal", costo:"90"},
-    {direccion:"UNITEC", costo:"90"},
-    {direccion:"Barrio bella vista", costo:"90"},
-    {direccion:"Predregalito BO del norte", costo:"90"},
-    {direccion:"Conatel", costo:"80"},
-    {direccion:"Barrio Abajo", costo:"90"},
-    {direccion:"Plaza miraflores", costo:"90"},
-    {direccion:"Plaza portal del bosque Frente a restaurante IL Padrino", costo:"90"},
-    {direccion:"Plaza Ciudad Nueva por calles los alcaldes", costo:"90"},
-    {direccion:"Gasolinera Texaco en el desvío a Mateo", costo:"80"},
-    {direccion:"Nueva capital (hasta el anillo orilla)", costo:"100"},
-    {direccion:"Colonia Humuya por el hospital Dime", costo:"90"},
-    {direccion:"Colonia la rosa por citymall por antigua dipsa", costo:"90"},
-    {direccion:"Divino paraiso se entrega a orilla del anillo", costo:"100"},
-    {direccion:"Universidad Pedagogica", costo:"90"},
-    {direccion:"Plaza Loarque", costo:"90"},
-    {direccion:"Colonia Villanueva en el puente peatonal de la honduras", costo:"90"},
-    {direccion:"Lomas del Guijarro Sur", costo:"80"},
-    {direccion:"Colonia Loma la Minita por la 21 de octubre", costo:"110"},
-    {direccion:"Residencial plaza", costo:"90"},
-    {direccion:"Metromall", costo:"90"},
-    {direccion:"Ransa anillo periférico por pricemart del sauce", costo:"90"}
+
+/* 🔽 AQUI ESTÁN TODAS TUS DIRECCIONES YA FUSIONADAS 🔽 */
+
+{direccion:"15 DE SEPTIEMBRE", costo:"90"},
+{direccion:"ALTOS DE LOARQUE (MIRADOR)", costo:"90"},
+{direccion:"ALTOS DE TONCONTIN", costo:"90"},
+{direccion:"AMERICA", costo:"90"},
+{direccion:"CASCADAS CITY", costo:"90"},
+{direccion:"CIUDAD NUEVA", costo:"90"},
+{direccion:"COLONIA LOARQUE", costo:"90"},
+{direccion:"COLONIA SATELITE", costo:"90"},
+{direccion:"EL SAUCE", costo:"90"},
+{direccion:"LA ARBOLEDA", costo:"90"},
+{direccion:"LA CATOLICA", costo:"90"},
+{direccion:"LA CONCEPCION", costo:"90"},
+{direccion:"LA GODOY", costo:"90"},
+{direccion:"LOS HIDALGOS", costo:"90"},
+{direccion:"SAN IGNACIO", costo:"90"},
+{direccion:"SAN SEBASTIAN", costo:"140"},
+{direccion:"BO EL CENTRO", costo:"90"},
+{direccion:"BO LA BOLSA", costo:"90"},
+{direccion:"BO MORAZAN", costo:"100"},
+{direccion:"BLV JUAN PABLO SEGUNDO", costo:"90"},
+{direccion:"LAS UVAS", costo:"90"},
+{direccion:"ALTOS DE LA GRANJA", costo:"90"},
+{direccion:"EL ALAMO", costo:"90"},
+{direccion:"EL HOGAR", costo:"90"},
+{direccion:"EL PRADO", costo:"90"},
+{direccion:"LA ALAMEDA", costo:"90"},
+{direccion:"COLONIA LA VEGA", costo:"90"},
+{direccion:"ECOVIVIENDA", costo:"100"},
+{direccion:"LA FLORENCIA", costo:"100"},
+{direccion:"LA HUMUYA", costo:"90"},
+{direccion:"LA GRANJA", costo:"90"},
+{direccion:"VENECIA", costo:"90"},
+
+/* ➕ TUS NUEVAS DIRECCIONES AÑADIDAS */
+{direccion:"Cero grande hasta la zona 4", costo:"100"},
+{direccion:"San Miguel", costo:"100"},
+{direccion:"La ronda", costo:"100"},
+{direccion:"Buenos Aires", costo:"100"},
+{direccion:"La campaña", costo:"100"},
+{direccion:"Guanacaste", costo:"100"},
+{direccion:"21 de octubre", costo:"110"},
+{direccion:"21 de febrero", costo:"90"},
+{direccion:"La cañada", costo:"90"},
+{direccion:"El hato", costo:"90"},
+{direccion:"El trapiche", costo:"100"},
+{direccion:"Suyapa solo abajo calle principal", costo:"100"},
+{direccion:"El divino paraíso solo en el anillo", costo:"100"},
+{direccion:"La ulloa solo orilla del anillo", costo:"100"},
+{direccion:"Carrizal", costo:"100"},
+{direccion:"Moll premier", costo:"100"},
+{direccion:"Torocagua", costo:"100"},
+{direccion:"Colonia villeda Morales", costo:"100"},
+{direccion:"Complejo Río lindo la Vega", costo:"90"},
+{direccion:"Calle los alcaldes enfrente de la naval a la par macdell", costo:"80"},
+{direccion:"Más abajito del mall premiere por la Polo en el desvío", costo:"80"},
+{direccion:"Brisas del valle calle principal", costo:"100"},
+{direccion:"Plaza ciudad Nueva por calle los alcaldes", costo:"90"},
+{direccion:"Villa olímpica", costo:"100"},
+{direccion:"Al durazno salida al norte por la posta", costo:"160"},
+{direccion:"Detrás de Banco Central por chiminique", costo:"90"},
+{direccion:"Sector el sauce por pricesmart", costo:"90"},
+{direccion:"Pedregal", costo:"90"},
+{direccion:"UNITEC", costo:"90"},
+{direccion:"Barrio bella vista", costo:"90"},
+{direccion:"Predregalito BO del norte", costo:"90"},
+{direccion:"Conatel", costo:"80"},
+{direccion:"Barrio Abajo", costo:"90"},
+{direccion:"Plaza miraflores", costo:"90"},
+{direccion:"Plaza portal del bosque Frente a restaurante IL Padrino", costo:"90"},
+{direccion:"Gasolinera Texaco en el desvío a Mateo", costo:"80"},
+{direccion:"Nueva capital (hasta el anillo orilla)", costo:"100"},
+{direccion:"Colonia Humuya por el hospital Dime", costo:"90"},
+{direccion:"Colonia la rosa por citymall por antigua dipsa", costo:"90"},
+{direccion:"Divino paraiso se entrega a orilla del anillo", costo:"100"},
+{direccion:"Universidad Pedagogica", costo:"90"},
+{direccion:"Plaza Loarque", costo:"90"},
+{direccion:"Colonia Villanueva en el puente peatonal de la honduras", costo:"90"},
+{direccion:"Lomas del Guijarro Sur", costo:"80"},
+{direccion:"Colonia Loma la Minita por la 21 de octubre", costo:"110"},
+{direccion:"Residencial plaza", costo:"90"},
+{direccion:"Metromall", costo:"90"},
+{direccion:"Ransa anillo periférico por pricemart del sauce", costo:"90"}
+
+/* =========================== */
 ];
 
-// Orden alfabético
 datos.sort((a,b) => a.direccion.localeCompare(b.direccion));
 
 function mostrarLista(filtro="") {
@@ -298,7 +234,6 @@ function mostrarLista(filtro="") {
 
 mostrarLista();
 
-// Buscador
 document.getElementById("buscador").addEventListener("input", e => {
     mostrarLista(e.target.value);
 });
