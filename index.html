@@ -122,11 +122,13 @@ Se pide puntualidad. MUCHAS GRACIAS 🥳
 <script>
 /* ============================
    DIRECTORIO DE ENVÍOS
+   ✅ DEDUP: si una dirección se repite, se deja SOLO 1
+   ✅ Se conserva la de MAYOR PRECIO
 =============================== */
 
-const datos = [
+const datosRaw = [
 
-/* 🔽 AQUI ESTÁN TODAS TUS DIRECCIONES YA FUSIONADAS 🔽 */
+/* 🔽 AQUI ESTÁN TODAS TUS DIRECCIONES 🔽 */
 
 {direccion:"15 DE SEPTIEMBRE", costo:"90"},
 {direccion:"Colonia Miramontes", costo:"90"},
@@ -163,7 +165,7 @@ const datos = [
 {direccion:"LA GRANJA", costo:"90"},
 {direccion:"VENECIA", costo:"90"},
 
-/* ➕ TUS NUEVAS DIRECCIONES AÑADIDAS */
+/* ➕ TUS DIRECCIONES YA AÑADIDAS ANTERIORMENTE */
 {direccion:"Cero grande hasta la zona 4", costo:"100"},
 {direccion:"San Miguel", costo:"100"},
 {direccion:"La ronda", costo:"100"},
@@ -213,55 +215,136 @@ const datos = [
 {direccion:"Metromall", costo:"90"},
 {direccion:"Ransa anillo periférico por pricemart del sauce", costo:"90"},
 
-/* ===========MAS DIRECCIONES================ */
+/* =========== MAS DIRECCIONES ================= */
 
-     {direccion:"Residencial La Cañada", costo:"90"},
-  {direccion:"Colonia Álamo", costo:"90"},
-  {direccion:"Cerro Grande zona 8", costo:"130"},
-  {direccion:"Novacentro", costo:"90"},
-  {direccion:"Residencial El Sauce", costo:"90"},
-  {direccion:"Kennedy primera entrada", costo:"90"},
-  {direccion:"Colonia Arturo Quezada (calle principal)", costo:"100"},
-  {direccion:"Residencial Bella Oriente sector 8B", costo:"100"},
-  {direccion:"Colonia Quezada", costo:"100"},
-  {direccion:"Hato de En Medio (cualquier sector)", costo:"90"},
-  {direccion:"Colonia La Cañada calle principal por arenera", costo:"90"},
-  {direccion:"Colonia Miraflores por iglesia católica (mercadito Cristian Diego)", costo:"90"},
-  {direccion:"Lomas del Guijarro por el Sagrado Corazón", costo:"90"},
-  {direccion:"Complejo policial San Miguel por el puente El Dólar", costo:"100"},
-  {direccion:"Centro de Tegucigalpa por la catedral", costo:"90"},
-  {direccion:"Residencial Roble Oeste", costo:"100"},
-  {direccion:"Tecnicentro La Bendición frente a Ecoplaza", costo:"100"},
-  {direccion:"Hospital Escuela portón 1", costo:"90"},
-  {direccion:"Plaza Loarque (Gallo Más Gallo)", costo:"120"},
-  {direccion:"DPI Kennedy primera entrada", costo:"100"},
-  {direccion:"Carretera al Picacho adelante de Casa de Piedra", costo:"150"},
-  {direccion:"Colonia Tepeyac por COHEP", costo:"100"},
-  {direccion:"Llantera Las Casitas", costo:"90"},
-  {direccion:"Flor del Campo por colegio Saúl Zelaya Jiménez", costo:"100"},
-  {direccion:"Colonia Arturo Quezada arriba de Maxi Despensa", costo:"100"},
-  {direccion:"Parada de buses Colonia Mary de Flores (orilla del anillo)", costo:"100"},
-  {direccion:"Colonia Villa Los Laureles", costo:"90"},
-  {direccion:"Coliseo de Ingenieros por Prados Universitarios", costo:"90"},
-  {direccion:"Edificio Artemisa", costo:"90"},
-  {direccion:"Campo Parada Martes", costo:"100"},
-  {direccion:"Colonia El Sitio", costo:"120"},
-  {direccion:"Colonia Divanna (se llega hasta El Santa)", costo:"100"},
-  {direccion:"Lomas del Mayab", costo:"100"},
-  {direccion:"Megalarach y Cía Miramontes", costo:"90"},
-  {direccion:"Colonia Melgar segundo puente calle principal colonia Smith", costo:"100"},
-  {direccion:"Residencial El Dorado", costo:"90"},
-  {direccion:"Colonia Los Ángeles por Casamata", costo:"90"},
-  {direccion:"Centroamérica Oeste", costo:"90"},
-  {direccion:"Centroamérica Este", costo:"90"},
-  {direccion:"Sagastume 2 (hasta parque Concordia)", costo:"100"},
-  {direccion:"Pepetos Bella Vista", costo:"90"},
-  {direccion:"Hospital Militar", costo:"100"},
-  {direccion:"Colonia Villa Los Ciruelos por 28 de Marzo (calle principal)", costo:"110"},
-  {direccion:"Colonia Villanueva carretera a Danlí (calle principal o 7 cuadras arriba de Villa de Sol)", costo:"120"}
+{direccion:"Residencial La Cañada", costo:"90"},
+{direccion:"Colonia Álamo", costo:"90"},
+{direccion:"Cerro Grande zona 8", costo:"130"},
+{direccion:"Novacentro", costo:"90"},
+{direccion:"Residencial El Sauce", costo:"90"},
+{direccion:"Kennedy primera entrada", costo:"90"},
+{direccion:"Colonia Arturo Quezada (calle principal)", costo:"100"},
+{direccion:"Residencial Bella Oriente sector 8B", costo:"100"},
+{direccion:"Colonia Quezada", costo:"100"},
+{direccion:"Hato de En Medio (cualquier sector)", costo:"90"},
+{direccion:"Colonia La Cañada calle principal por arenera", costo:"90"},
+{direccion:"Colonia Miraflores por iglesia católica (mercadito Cristian Diego)", costo:"90"},
+{direccion:"Lomas del Guijarro por el Sagrado Corazón", costo:"90"},
+{direccion:"Complejo policial San Miguel por el puente El Dólar", costo:"100"},
+{direccion:"Centro de Tegucigalpa por la catedral", costo:"90"},
+{direccion:"Residencial Roble Oeste", costo:"100"},
+{direccion:"Tecnicentro La Bendición frente a Ecoplaza", costo:"100"},
+{direccion:"Hospital Escuela portón 1", costo:"90"},
+{direccion:"Plaza Loarque (Gallo Más Gallo)", costo:"120"},
+{direccion:"DPI Kennedy primera entrada", costo:"100"},
+{direccion:"Carretera al Picacho adelante de Casa de Piedra", costo:"150"},
+{direccion:"Colonia Tepeyac por COHEP", costo:"100"},
+{direccion:"Llantera Las Casitas", costo:"90"},
+{direccion:"Flor del Campo por colegio Saúl Zelaya Jiménez", costo:"100"},
+{direccion:"Colonia Arturo Quezada arriba de Maxi Despensa", costo:"100"},
+{direccion:"Parada de buses Colonia Mary de Flores (orilla del anillo)", costo:"100"},
+{direccion:"Colonia Villa Los Laureles", costo:"90"},
+{direccion:"Coliseo de Ingenieros por Prados Universitarios", costo:"90"},
+{direccion:"Edificio Artemisa", costo:"90"},
+{direccion:"Campo Parada Martes", costo:"100"},
+{direccion:"Colonia El Sitio", costo:"120"},
+{direccion:"Colonia Divanna (se llega hasta El Santa)", costo:"100"},
+{direccion:"Lomas del Mayab", costo:"100"},
+{direccion:"Megalarach y Cía Miramontes", costo:"90"},
+{direccion:"Colonia Melgar segundo puente calle principal colonia Smith", costo:"100"},
+{direccion:"Residencial El Dorado", costo:"90"},
+{direccion:"Colonia Los Ángeles por Casamata", costo:"90"},
+{direccion:"Centroamérica Oeste", costo:"90"},
+{direccion:"Centroamérica Este", costo:"90"},
+{direccion:"Sagastume 2 (hasta parque Concordia)", costo:"100"},
+{direccion:"Pepetos Bella Vista", costo:"90"},
+{direccion:"Hospital Militar", costo:"100"},
+{direccion:"Colonia Villa Los Ciruelos por 28 de Marzo (calle principal)", costo:"110"},
+{direccion:"Colonia Villanueva carretera a Danlí (calle principal o 7 cuadras arriba de Villa de Sol)", costo:"120"},
+
+/* ============================
+   ➕ NUEVAS DIRECCIONES (LAS QUE ENVIASTE)
+=============================== */
+
+{direccion:"Residencial Honduras", costo:"90"},
+{direccion:"Hospital escuela", costo:"90"},
+{direccion:"Colonia travesía en el palo", costo:"100"},
+{direccion:"Barrio Villa Adela mercadito Quique", costo:"90"},
+{direccion:"Colonia El Prado calle principal", costo:"90"},
+{direccion:"Colonia Nueva Suyapa", costo:"100"},
+{direccion:"Residencial Centroamérica este", costo:"90"},
+{direccion:"Colonia 21 de octubre en codis", costo:"110"},
+{direccion:"Mercado jacaleapa", costo:"90"},
+{direccion:"La granja por el juzgado", costo:"90"},
+{direccion:"Colonia Santa Fe calle principal contiguo al punto de taxis", costo:"100"},
+{direccion:"Residencial bosques del tablón", costo:"130"},
+{direccion:"Desvío de aldea Santa Rosa", costo:"120"},
+{direccion:"Colonia Policarpo Paz", costo:"100"},
+{direccion:"Casa quinchón enfrente de finanza antes de parque La leona", costo:"90"},
+{direccion:"Residencial Francisco morazán", costo:"90"},
+{direccion:"A la orilla del anillo en la nueva capital", costo:"100"},
+{direccion:"Hato de enmedio", costo:"90"},
+{direccion:"Colonia modesto rodas #2 atrás de la escuela Fuerzas Armadas", costo:"110"},
+{direccion:"Barrio Buenos Aires calle principal frente a punto de taxi", costo:"100"},
+{direccion:"Barrio el rincón Arriba de la alcaldía municipal pasando la tranca hay unas pulperías y ahí hay una placita. Mi casa está frente a la placita", costo:"110"},
+{direccion:"Colonia calpules", costo:"90"},
+{direccion:"Gasolinera Puma frente al hospital San Felipe", costo:"100"},
+{direccion:"Colonia nueva esperanza calle principal esquina opuesta d colegio modelo por tiloarque a la par de posta de policía", costo:"90"},
+{direccion:"Honduras maya", costo:"100"},
+{direccion:"Aqui en el calffaa para mateo Después del campo parada martes", costo:"120"},
+{direccion:"Colonia San José de la peña media cuadra antes de la posta policial", costo:"90"},
+{direccion:"Gasolinera Puma de germania", costo:"130"},
+{direccion:"Barrio Guanacaste", costo:"100"},
+{direccion:"Maxi despensa de la Kennedy", costo:"90"},
+{direccion:"Palo de hule en el puente", costo:"90"},
+{direccion:"Lomas del guijarro", costo:"90"},
+{direccion:"Cerro grande zona 1", costo:"100"},
+{direccion:"En la divino paraíso (solo a orilla del anillo)", costo:"100"},
+{direccion:"Boulevard suyapa", costo:"100"},
+{direccion:"Residencial paseo las campanas arriba de la unitec", costo:"120"},
+{direccion:"hospital San Jorge", costo:"90"},
+{direccion:"Sushilab de la colonia América", costo:"90"},
+{direccion:"Gasolinera shell del anillo en loarque", costo:"90"},
+{direccion:"Complejo caprisa calle principal", costo:"90"},
+{direccion:"Colonia Los Llanos", costo:"90"},
+{direccion:"Centro comercial plaza Milenium", costo:"90"},
+{direccion:"Colonia Florencia, Edicio Plaza América, distribuidora san Rafael", costo:"100"}
 ];
 
-datos.sort((a,b) => a.direccion.localeCompare(b.direccion));
+/* ============================
+   DEDUP (deja solo 1 y la de mayor precio)
+=============================== */
+
+function normalizeKey(text) {
+  return text
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")  // quita tildes
+    .replace(/[^a-z0-9]+/g, " ")                      // limpia símbolos
+    .trim();
+}
+
+const datosMap = new Map();
+
+for (const item of datosRaw) {
+  const key = normalizeKey(item.direccion);
+  const costoNum = Number(item.costo);
+
+  if (!datosMap.has(key)) {
+    datosMap.set(key, { direccion: item.direccion, costo: String(costoNum) });
+  } else {
+    const actual = datosMap.get(key);
+    const actualNum = Number(actual.costo);
+
+    // si el nuevo tiene mayor costo, reemplaza
+    if (costoNum > actualNum) {
+      datosMap.set(key, { direccion: item.direccion, costo: String(costoNum) });
+    }
+  }
+}
+
+const datos = Array.from(datosMap.values());
+
+datos.sort((a, b) => a.direccion.localeCompare(b.direccion, "es", { sensitivity: "base" }));
 
 function mostrarLista(filtro="") {
     const lista = document.getElementById("lista");
